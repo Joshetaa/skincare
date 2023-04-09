@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Website</title>
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
 </head>
   <body>
     <main>
         <h1>swach - MVP</h1>
-        <form action="/">
-        	<label for="name">NameL</label><br>
+        <form id="skin-form" action="product.html" method="GET">
+        	<label for="name">Name</label><br>
         	<input type="text" id="name" name="name"><br>
         	<p> What are your skin concerns? </p>
         	<input type="checkbox" id="aging" name="aging" value="aging">
@@ -32,11 +32,29 @@
   			<input type="radio" id="sometimes" name="irritation_redness" value="sometimes">
   			<label for="sometimes">Sometimes</label><br>
   			<input type="radio" id="rarely" name="irritation_redness" value="rarely">
-  			<label for="rarely">Rarely</label>
+  			<label for="rarely">Rarely</label><br>
   			<input type="submit" value="Submit">
         </form>
     </main>
-	<script src="index.js"></script>
+	<script>
+		window.onload = function() {
+
+  			// Check for LocalStorage support.
+  			if (localStorage) {
+
+    			// Add an event listener for form submissions
+    			document.getElementById('skin-form').addEventListener('submit', function() {
+      			// Get the value of the name field.
+      			var name = document.getElementById('name').value;
+
+      			// Save the name in localStorage.
+      			localStorage.setItem('name', name);
+    			});
+
+  			}			
+
+		}
+	</script>
   </body>
 </html> -->
 
