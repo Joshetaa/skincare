@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <script>
+      function variables() {
+        const name = window.localStorage.getItem("name");
+        document.getElementById('name').innerHTML = "Hello " + name + "!";
+      }
+  </script>
+</head>
+  <body onload="variables()">
+    <main>
+        <h1>swach - MVP</h1>
+        <p>Name: <span id="name"></span></p>
+        <!-- <p>Aging: <span id="aging"></span></p>
+        <p>Acne: <span id="acne"></span></p>
+        <p>Dryness: <span id="dryness"></span></p>
+        <p>Oiliness: <span id="oiliness"></span></p>
+        <p>Dark Circles: <span id="dark_circles"></span></p>
+        <p>Hyper Pigmentation: <span id="hyper_pigmentation"></span></p>
+        <p>Often: <span id="often"></span></p>
+        <p>Sometimes: <span id="sometimes"></span></p>
+        <p>Rarely: <span id="rarely"></span></p> -->
+        <!-- <label for="product">Product Name</label><br>
+        <input type="text" id="product" name="product"><br> -->
+
+    </main>
+  </body>
+</html>
