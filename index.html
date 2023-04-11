@@ -1,70 +1,10 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-</head>
-  <body>
-    <main>
-        <h1>swach - MVP</h1>
-        <form id="skin-form" action="product.html" method="GET">
-        	<label for="name">Name</label><br>
-        	<input type="text" id="name" name="name"><br>
-        	<p> What are your skin concerns? </p>
-        	<input type="checkbox" id="aging" name="aging" value="aging">
-  			<label for="aging"> Aging</label><br>
-  			<input type="checkbox" id="acne" name="acne" value="acne">
-  			<label for="acne"> Acne</label><br>
-  			<input type="checkbox" id="dryness" name="dryness" value="dryness">
-  			<label for="dryness"> Dryness</label>
-  			<input type="checkbox" id="oiliness" name="oiliness" value="oiliness">
-  			<label for="oiliness"> Oiliness</label>
-  			<input type="checkbox" id="dark_circles" name="dark_circles" value="dark circles">
-  			<label for="dark_circles"> Dark Circles</label>
-  			<input type="checkbox" id="hyper_pigmentation" name="hyper_pigmentation" value="hyper pigmentation">
-  			<label for="hyper_pigmentation"> Hyper Pigmentation</label>
-  			<p> How often do you face skin irritation or redness? </p>
-  			<input type="radio" id="often" name="irritation_redness" value="often">
-  			<label for="often">Often</label><br>
-  			<input type="radio" id="sometimes" name="irritation_redness" value="sometimes">
-  			<label for="sometimes">Sometimes</label><br>
-  			<input type="radio" id="rarely" name="irritation_redness" value="rarely">
-  			<label for="rarely">Rarely</label><br>
-  			<input type="submit" value="Submit">
-        </form>
-    </main>
-	<script>
-		window.onload = function() {
-
-  			// Check for LocalStorage support.
-  			if (localStorage) {
-
-    			// Add an event listener for form submissions
-    			document.getElementById('skin-form').addEventListener('submit', function() {
-      			// Get the value of the name field.
-      			var name = document.getElementById('name').value;
-
-      			// Save the name in localStorage.
-      			localStorage.setItem('name', name);
-    			});
-
-  			}			
-
-		}
-	</script>
-  </body>
-</html> -->
-
 <html>
 <head>
 <script>
 function show(shown, hidden) {
   document.getElementById(shown).style.display='block';
   document.getElementById(hidden).style.display='none';
-  document.getElementById("name_display").innerHTML = "HI " + document.getElementById("name").value + " !";
+  document.getElementById("name_display").innerHTML = "Hi " + document.getElementById("name").value + " !";
   return false;
 }
 </script>
@@ -72,7 +12,7 @@ function show(shown, hidden) {
 <body>
     
   <div id="Page1">
-    <h1>swach - MVP</h1>
+    <h1> Clear </h1>
         <form>
         	<label for="name">Name</label><br>
         	<input type="text" id="name" name="name"><br>
@@ -103,6 +43,73 @@ function show(shown, hidden) {
     
   <div id="Page2" style="display:none">
 	<p id="name_display"> </p>
+	<form>
+		<label for="product"> Enter the skincare product you want to test match for! </label><br>
+        <input type="text" id="product" name="product"><br>
+	</form>
+
+	<div id="chat-container">
+		<div id="chat-messages"></div>
+		<input type="text" id="chat-input" />
+		<button id="chat-send">Send</button>
+	  </div>
+  
+	  <script>
+		// Initialize ChatGPT API
+		const chatGPTApiKey = 'your_api_key';
+		const chatGPTApiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+  
+		// Create function to send message to ChatGPT API and display response
+		function sendMessage() {
+		  const messageInput = document.getElementById('chat-input');
+		  const message = messageInput.value;
+  
+		  // Create HTTP request
+		  const xhr = new XMLHttpRequest();
+		  xhr.open('POST', chatGPTApiUrl);
+		  xhr.setRequestHeader('Content-Type', 'application/json');
+		  xhr.setRequestHeader('Authorization', 'Bearer ' + chatGPTApiKey);
+  
+		  // Handle response
+		  xhr.onreadystatechange = function() {
+			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+			  const response = JSON.parse(xhr.responseText).choices[0].text;
+  
+			  // Display response
+			  const chatMessages = document.getElementById('chat-messages');
+			  const messageContainer = document.createElement('div');
+			  messageContainer.classList.add('message');
+			  messageContainer.innerHTML = '<div class="sender">ChatGPT:</div><div class="content">' + response + '</div>';
+			  chatMessages.appendChild(messageContainer);
+  
+			  // Clear input
+			  messageInput.value = '';
+			}
+		  };
+  
+		  // Send request
+		  xhr.send(JSON.stringify({
+			prompt: 'User: ' + message + '\nChatGPT:',
+			max_tokens: 50,
+			temperature: 0.7,
+			n: 1,
+			stop: '\n'
+		  }));
+		}
+  
+		// Attach event listener to send button
+		const chatSendButton = document.getElementById('chat-send');
+		chatSendButton.addEventListener('click', sendMessage);
+  
+		// Attach event listener to input field for "Enter" key
+		const chatInputField = document.getElementById('chat-input');
+		chatInputField.addEventListener('keydown', function(event) {
+		  if (event.key === 'Enter') {
+			sendMessage();
+		  }
+		});
+	  </script>
+
   </div>
     
 </body>
