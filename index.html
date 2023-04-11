@@ -8,11 +8,12 @@ function show(shown, hidden) {
   return false;
 }
 </script>
+<script src="ChatGPT.js"></script>
 </head>
 <body>
     
   <div id="Page1">
-    <h1> Clear </h1>
+    <h1> Clarity </h1>
         <form>
         	<label for="name">Name</label><br>
         	<input type="text" id="name" name="name"><br>
@@ -40,77 +41,16 @@ function show(shown, hidden) {
         </form>
     <a href="#" onclick="return show('Page2','Page1');"> Submit </a>
   </div>
-    
   <div id="Page2" style="display:none">
 	<p id="name_display"> </p>
-	<form>
-		<label for="product"> Enter the skincare product you want to test match for! </label><br>
-        <input type="text" id="product" name="product"><br>
-	</form>
-
-	<div id="chat-container">
-		<div id="chat-messages"></div>
-		<input type="text" id="chat-input" />
-		<button id="chat-send">Send</button>
-	  </div>
-  
-	  <script>
-		// Initialize ChatGPT API
-		const chatGPTApiKey = 'your_api_key';
-		const chatGPTApiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
-  
-		// Create function to send message to ChatGPT API and display response
-		function sendMessage() {
-		  const messageInput = document.getElementById('chat-input');
-		  const message = messageInput.value;
-  
-		  // Create HTTP request
-		  const xhr = new XMLHttpRequest();
-		  xhr.open('POST', chatGPTApiUrl);
-		  xhr.setRequestHeader('Content-Type', 'application/json');
-		  xhr.setRequestHeader('Authorization', 'Bearer ' + chatGPTApiKey);
-  
-		  // Handle response
-		  xhr.onreadystatechange = function() {
-			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			  const response = JSON.parse(xhr.responseText).choices[0].text;
-  
-			  // Display response
-			  const chatMessages = document.getElementById('chat-messages');
-			  const messageContainer = document.createElement('div');
-			  messageContainer.classList.add('message');
-			  messageContainer.innerHTML = '<div class="sender">ChatGPT:</div><div class="content">' + response + '</div>';
-			  chatMessages.appendChild(messageContainer);
-  
-			  // Clear input
-			  messageInput.value = '';
-			}
-		  };
-  
-		  // Send request
-		  xhr.send(JSON.stringify({
-			prompt: 'User: ' + message + '\nChatGPT:',
-			max_tokens: 50,
-			temperature: 0.7,
-			n: 1,
-			stop: '\n'
-		  }));
-		}
-  
-		// Attach event listener to send button
-		const chatSendButton = document.getElementById('chat-send');
-		chatSendButton.addEventListener('click', sendMessage);
-  
-		// Attach event listener to input field for "Enter" key
-		const chatInputField = document.getElementById('chat-input');
-		chatInputField.addEventListener('keydown', function(event) {
-		  if (event.key === 'Enter') {
-			sendMessage();
-		  }
-		});
-	  </script>
-
-  </div>
+	
+	<label for="txtMsg"> Enter the skincare product you want to test match for! </label><br>
+	<input type="text" id="txtMsg" />
+	<div>
+		<button type="button" onclick="Send()" id="btnSend">Send</button>
+	</div><br>
+	<textarea id="txtOutput" rows="10"   border: none; outline: none;
+         placeholder="Output"> </textarea>
     
 </body>
 </html>
