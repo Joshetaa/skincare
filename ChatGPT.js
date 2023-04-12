@@ -1,4 +1,4 @@
-var OPENAI_API_KEY = "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";
+var OPENAI_API_KEY = "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";
 var bTextToSpeechSupported = false;
 var bSpeechInProgress = false;
 var oSpeechRecognizer = null
@@ -7,8 +7,9 @@ var oVoices = null;
 function Send() {
 
     var sQuestion = txtMsg.value;
+    // var sQuestion = 
     if (sQuestion == "") {
-        alert("Type in your question!");
+        alert("Type in your Product!");
         txtMsg.focus();
         return;
     }
@@ -37,7 +38,7 @@ function Send() {
 
 
                 if (s == "") s = "No response";
-                txtOutput.value += "Chat GPT: " + s;
+                txtOutput.value = s + " match";
             }            
         }
     };
