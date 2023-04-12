@@ -1,4 +1,4 @@
-var OPENAI_API_KEY = "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";
+var OPENAI_API_KEY = "<enter API key>";
 var bTextToSpeechSupported = false;
 var bSpeechInProgress = false;
 var oSpeechRecognizer = null
@@ -7,12 +7,40 @@ var oVoices = null;
 function Send() {
 
     var sQuestion = txtMsg.value;
-    // var sQuestion = 
     if (sQuestion == "") {
         alert("Type in your Product!");
         txtMsg.focus();
         return;
     }
+
+    sQuestion = "Output '90%' if " + txtMsg.value +  " usable with";
+    if(aging.checked)
+    {
+        sQuestion+= " wrinkles, fine lines";
+    }
+    if(acne.checked)
+    {
+        sQuestion+= ", acne prone skin";
+    }
+    if(oiliness.checked)
+    {
+        sQuestion+= ", oily skin";
+    }
+    if(dryness.checked)
+    {
+        sQuestion+= ", dry skin";
+    }
+    if(dark_circles.checked)
+    {
+        sQuestion+= ", dark circles";
+    }
+    if(hyper_pigmentation.checked)
+    {
+        sQuestion+= ", hyperpigmentation";
+    }
+
+    sQuestion+= "and '30% if not";
+
 
     var oHttp = new XMLHttpRequest();
     oHttp.open("POST", "https://api.openai.com/v1/completions");
