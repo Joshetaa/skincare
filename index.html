@@ -1,5 +1,76 @@
 <html>
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      color: orange;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 50px;
+    }
+    form {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+    #button-div {
+      width: 90px;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: solid;
+      padding: 10px;
+      border-color: orange;
+    }
+    #link {
+      font-family: 'Poppins', sans-serif;
+      color: orange;
+      font-size: 25px;
+      width: 90px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #name_display {
+      font-family: 'Poppins', sans-serif;
+      color: orange;
+      text-align: center;
+      font-size: 50px;
+    }
+    /*#txtOutput {
+      margin-left: auto;
+      margin-right: auto;
+      width: 30%;
+    }*/
+    #txtLabel {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'Poppins', sans-serif;
+    }
+    #txtMsg {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #btnSend {
+      color: orange;
+      font-family: 'Poppins', sans-serif;
+      width: 10%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #alldiv {
+      width: 40%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #output {
+      width: 40%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 <script>
 function show(shown, hidden) {
   document.getElementById(shown).style.display='block';
@@ -39,18 +110,20 @@ function show(shown, hidden) {
   			<label for="rarely">Rarely</label>
   			<!-- <input type="submit" value="Submit"> -->
         </form>
-    <a href="#" onclick="return show('Page2','Page1');"> Submit </a>
+    <div id="button-div"><a id="link" href="#" onclick="return show('Page2','Page1');"> Submit </a></div>
   </div>
   <div id="Page2" style="display:none">
 	<p id="name_display"> </p>
-	
-	<label for="txtMsg"> Enter the skincare product you want to test match for! </label><br>
+	<div id="alldiv">
+	<label id ="txtLabel" for="txtMsg"> Enter the skincare product you want to test match for! </label><br>
 	<input type="text" id="txtMsg" />
 	<div>
 		<button type="button" onclick="Send()" id="btnSend">Send</button>
 	</div><br>
+  </div>
+  <div id="output">
 	<textarea id="txtOutput" rows="10"   border: none; outline: none;
          placeholder="Output"> </textarea>
-    
+    </div>
 </body>
 </html>
